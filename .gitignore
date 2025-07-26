@@ -1,0 +1,42 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+.env
+.env.local
+
+# IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+log.txt
+
+# Build tools
+coverage/
+build/
+tmp/
+temp/
+
+# Test output
+jest-test-results.json
+
+# Cache
+.cache/
+.parcel-cache/
+.next/
+out/
+
+# Local development
+*.local

@@ -11,13 +11,18 @@ const umidade = document.querySelector("#umidade")
 const vento = document.querySelector("#vento")
 const celsiusValue = document.querySelector("#celsius")
 
+const WEATHERAPIKEY = import.meta.env.VITE_WEATHER_API_KEY;
+console.log('Chave da API:', WEATHERAPIKEY);
+
+
 searchBtn.addEventListener("click", (event) => {
     getAddress(event)
+    searchInput.value = ''
 })
 
-getAddress = (event) => {
+const getAddress = async (event) => {
     event.preventDefault()
-    fetch(`http://localhost:3000/endereco/${searchInput.value}`)
+    await fetch(`http://localhost:3000/endereco/${searchInput.value}`)
     // fetch(`http://localhost:3000/endereco/51021040`)
   .then(res => res.json())
   .then(data => {
@@ -33,10 +38,9 @@ getAddress = (event) => {
     
 });
 }
-const WEATHERAPIKEY = `d1e71a8c988acda91c3a58903fee7bc8`
-getCity = (event, localidadeID) => {
+const getCity = async (event, localidadeID) => {
   event.preventDefault
-  fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${localidadeID}&limit=5&appid=${WEATHERAPIKEY}`)
+  await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${localidadeID}&limit=5&appid=${WEATHERAPIKEY}`)
   .then(res => res.json())
   .then(data => {
     console.log(`Latitude: ${data[0].lat}, Longitude: ${data[0].lon}`)
@@ -44,9 +48,9 @@ getCity = (event, localidadeID) => {
 });
 }
 
-getWeather = (event, lat, lon) => {
+const getWeather = async (event, lat, lon) => {
   event.preventDefault()
-fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHERAPIKEY}`)
+await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHERAPIKEY}`)
   .then(res => res.json())
   .then(data => {
     console.log(data)

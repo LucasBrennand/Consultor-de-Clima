@@ -108,3 +108,29 @@ body {
     font-size: 50px;
     text-align: center;
 }
+
+.history-container{
+    grid-row: 4/6;
+    grid-column: 2/9;
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#nuvens{
+    font-size: 20px;
+}
+
+.favorites-list{
+    list-style-type: none;
+    li{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        border: 2px solid var(--secondary-color);
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+}

@@ -55,10 +55,10 @@ await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lo
   .then(data => {
     console.log(data)
     let celsius = parseFloat(data.main.temp - 273.15)
-    sensacao.textContent = celsius.toFixed(2)
+    sensacao.textContent = `${(data.main.feels_like.toFixed(2) - 273.15).toFixed(1)} °C`
     umidade.textContent = data.main.humidity
     vento.textContent = data.wind.speed
-    celsiusValue.textContent = celsius.toFixed(2)
+    celsiusValue.textContent = `${celsius.toFixed(1)} °C`
 });
 }
 

@@ -2,23 +2,26 @@
     margin: 0;
     padding: 0;
 }
+:root {
+    --primary-color: rgb(235, 242, 237);
+    --secondary-color: rgb(151 105 36);
+    --background-color-primary: rgb(96, 107, 107);
+    --font--primary: "Inika", serif;
+}
 
 body {
     background-color: rgb(106, 141, 141);
+    font-family: var(--font--primary);
 }
 
-:root {
-    --primary-color: rgb(235, 242, 237);
-    --secondary-color: rgb(34, 137, 63);
-    --background-color-primary: rgb(96, 107, 107);
-}
+
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     background-color: var(--background-color-primary);
-    height: 80vh;
+    height: 100vh;
     gap: 10px;
     padding: 10px;
     width: 100%;
@@ -26,14 +29,13 @@ body {
 
 .search-container {
     background-color: var(--primary-color);
-    grid-column: 2 / 7;
+    grid-column: 2 / 9;
     grid-row: 1 / 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
-    width: 100%;
     border-radius: 20px;
 }
 
@@ -58,15 +60,24 @@ body {
 
 .card1 {
     background-color: var(--primary-color);
-    grid-column: 2 / 5;
+    grid-column: 2 / 6;
     grid-row: 2 / 4;
+    @media (max-width: 1023px) {
+        grid-column: 2 / 9;
+        grid-row: 2 / 4;
+    }
 }
 
 .card2 {
     background-color: var(--secondary-color);
-    grid-column: 5 / 7;
+    grid-column: 6 / 9;
     grid-row: 2 / 4;
     gap: 20px;
+    color: rgb(228, 228, 228);
+    @media (max-width: 1023px) {
+        grid-column: 2 / 9;
+        grid-row: 4 / 6;
+    }
 }
 
 .clima-list{
@@ -75,14 +86,28 @@ body {
     align-items: center;
     gap: 20px;
     text-align: center;
-    height: 100%;
 }
 
 .clima-item{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
 }
 
 .card-header h3{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.card2 .card-header {
+    margin-bottom: 40px;
+}
+
+
+
+.card-header p{
+    font-size: 50px;
     text-align: center;
 }

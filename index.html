@@ -8,6 +8,12 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./src/style.css">
     <link rel="shortcut icon" href="./public/vite.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -35,6 +41,8 @@
                     <li>Estado <span id="estado"></li>
                     <li>Cidade <span id="localidade"></span></li>
                 </ul>
+
+                <button>Salvar</button>
             </div>
 
         </section>
@@ -42,27 +50,28 @@
         <section class="card-container card2">
             <div class="card-header">
                 <h1>Clima</h1>
-                <h3>Temperatura <span id="celsius"></span></h2>
+                <h3>Temperatura </h2>
+                <p><span id="celsius"></span></p>
             </div>
 
             <ul class="clima-list">
                 <li>
                     <div class="clima-item">
-                        <img src="" alt="">
+                        <i class="fa-solid fa-hand fa-lg"></i>
                         <p>Sensação</p>
                         <p><span id="sensacao"></span></p>
                     </div>
                 </li>
                 <li>
                     <div class="clima-item">
-                        <img src="" alt="">
+                        <i class="fa-solid fa-wind fa-lg" style="color: rgb(159, 156, 156);"></i>
                         <p>Vento</p>
                         <p><span id="vento"></span></p>
                     </div>
                 </li>
                 <li>
                     <div class="clima-item">
-                        <img src="" alt="">
+                        <i class="fa-solid fa-droplet fa-lg" style="color: rgb(45, 58, 133);"></i>
                         <p>Umidade</p>
                         <p><span id="umidade"></span></p>
                     </div>

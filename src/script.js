@@ -70,7 +70,7 @@ try {
 
     const cleanCep = cepValue.replace(/\D/g, "");
 
-    await fetch(`http://localhost:3000/clima/${cleanCep}`)
+    await fetch(`/api/clima/${cleanCep}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.erro) {

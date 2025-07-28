@@ -1,7 +1,5 @@
 [build]
-  # Onde a Netlify deve procurar os arquivos para publicar (seu frontend)
   publish = "public"
-  # Onde estão suas funções de servidor
   functions = "netlify/functions"
 
 [[redirects]]

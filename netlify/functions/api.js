@@ -1,26 +1,26 @@
-import express from 'express';
-import axios from 'axios';
-import cors from 'cors';
-import 'dotenv/config';
-import serverless from 'serverless-http';
+const express = require('express');
+const axios = require('axios');
+const cors = require('cors');
+require('dotenv').config();
+const serverless = require('serverless-http');
 
 const app = express();
 const router = express.Router();
 
-const WEATHERAPIKEY = process.env.VITE_WEATHER_API_KEY;
+const { VITE_WEATHER_API_KEY } = process.env;
 
 app.use(cors());
 app.use(express.json());
 
 router.get('/clima/:cep', async (req, res) => {
-  console.log("✅ Função '/clima' iniciada.");
+  console.log("✅ Função '/clima' iniciada com sintaxe CommonJS.");
   const { cep } = req.params;
 
-  if (!WEATHERAPIKEY) {
+  if (!VITE_WEATHER_API_KEY) {
     console.error("❌ ERRO CRÍTICO: A variável de ambiente VITE_WEATHER_API_KEY não foi encontrada!");
     return res.status(500).json({ erro: 'A chave da API do clima não foi configurada no servidor.' });
   }
-  
+
   try {
     console.log(`1. Buscando endereço para o CEP: ${cep}`);
     const addressResponse = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
@@ -33,12 +33,11 @@ router.get('/clima/:cep', async (req, res) => {
 
     const localidadeID = addressData.localidade;
     console.log(`2. Endereço encontrado: ${localidadeID}. Buscando coordenadas.`);
-    
+
     const geoResponse = await axios.get(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${localidadeID}&limit=1&appid=${WEATHERAPIKEY}`
+      `http://api.openweathermap.org/geo/1.0/direct?q=${localidadeID}&limit=1&appid=${VITE_WEATHER_API_KEY}`
     );
 
-    // Validação crucial que estava faltando:
     if (!geoResponse.data || geoResponse.data.length === 0) {
       console.error(`❌ ERRO: OpenWeatherMap não encontrou coordenadas para a cidade: ${localidadeID}`);
       return res.status(404).json({ erro: `Não foi possível encontrar as coordenadas para a cidade: ${localidadeID}` });
@@ -49,10 +48,10 @@ router.get('/clima/:cep', async (req, res) => {
     console.log(`3. Coordenadas encontradas: Lat ${lat}, Lon ${lon}. Buscando clima.`);
 
     const weatherResponse = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHERAPIKEY}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${VITE_WEATHER_API_KEY}`
     );
     const weatherData = weatherResponse.data;
-    
+
     console.log("✅ Sucesso! Enviando resposta completa.");
     res.json({
       endereco: addressData,
@@ -67,4 +66,5 @@ router.get('/clima/:cep', async (req, res) => {
 
 app.use('/.netlify/functions/api', router);
 
-export const handler = serverless(app);
+// A exportação também muda para o padrão CommonJS
+module.exports.handler = serverless(app);

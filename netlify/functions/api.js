@@ -64,7 +64,7 @@ router.get('/clima/:cep', async (req, res) => {
   }
 });
 
-app.use('/.netlify/functions/api', router);
+// AQUI ESTÁ A CORREÇÃO
+app.use('/api', router);
 
-// A exportação também muda para o padrão CommonJS
 module.exports.handler = serverless(app);

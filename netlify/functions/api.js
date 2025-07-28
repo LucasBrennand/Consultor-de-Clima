@@ -64,7 +64,6 @@ router.get('/clima/:cep', async (req, res) => {
   }
 });
 
-// AQUI ESTÁ A CORREÇÃO
 app.use('/api', router);
 
 module.exports.handler = serverless(app);
